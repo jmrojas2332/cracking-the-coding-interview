@@ -11,7 +11,7 @@ need to be limited to just dictionary words.
 
 import unittest
 
-ALPHABET_SIZE = 256
+EXTENDED_ASCII_SIZE = 256
 
 def palindrome_permutation(string):
     """
@@ -24,23 +24,23 @@ def palindrome_permutation(string):
     characters that have an odd count. This prevents having to iterate through
     char_count because we already know how many characters have an odd count.
 
-    Note: We are using extended ascii as our alphabet (see ALPHABET_SIZE) and
+    Note: We are using extended ascii as our alphabet (see EXTENDED_ASCII_SIZE) and
     our solution handles lowercase and uppercase as different characters.
 
     Time Complexity: O(n) where n is the length of the string
     Space Complexity: O(k) where k is the size of the alphabet
-    """	
+    """ 
     
-    char_count = [0 for _ in range(0, ALPHABET_SIZE)]
-    odd_count = False
+    char_count = [0 for _ in range(0, EXTENDED_ASCII_SIZE)]
+    odd_count = 0
 
     for c in string:
         val = ord(c)
-        if val >= ALPHABET_SIZE:
+        if val >= EXTENDED_ASCII_SIZE:
             raise IndexError('Character {0} with value {1} not in our alphabet of size {2}'.format(
                 c,
-                val, 
-                ALPHABET_SIZE))
+                val,
+                EXTENDED_ASCII_SIZE))
         else:
             char_count[val] += 1
 
@@ -58,13 +58,13 @@ class Test(unittest.TestCase):
     data_expected_false = ['aaab', 'aabbcd', '010101', 'Hello hello']
 
     def test_palindrome_permutation(self):
-    	for test_string in self.data_expected_true:
-    		actual = palindrome_permutation(test_string)
-    		self.assertTrue(actual)
+        for test_string in self.data_expected_true:
+            actual = palindrome_permutation(test_string)
+            self.assertTrue(actual)
 
-    	for test_string in self.data_expected_false:
-    		actual = palindrome_permutation(test_string)
-    	self.assertFalse(actual)
+        for test_string in self.data_expected_false:
+            actual = palindrome_permutation(test_string)
+        self.assertFalse(actual)
 
 
 if __name__ == '__main__':
