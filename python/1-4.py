@@ -3,10 +3,10 @@ Cracking the Coding Interview
 
 Chapter 1 Arrays and Strings
 
-Question 1.4: Given a string, write a function to check if it is a permutation
-of a palindrome. A palindrome is a word or phrase that is the same forwards as
-backwards. A permutation is a rearrangement of letters. The palindrome does not
-need to be limited to just dictionary words.
+Question 1.4 Palindrome Permutation: Given a string, write a function to check
+if it is a permutation of a palindrome. A palindrome is a word or phrase that is
+the same forwards as backwards. A permutation is a rearrangement of letters. The
+palindrome does not need to be limited to just dictionary words.
 """
 
 import unittest
@@ -24,8 +24,8 @@ def palindrome_permutation(string):
     characters that have an odd count. This prevents having to iterate through
     char_count because we already know how many characters have an odd count.
 
-    Note: We are using extended ascii as our alphabet (see EXTENDED_ASCII_SIZE) and
-    our solution handles lowercase and uppercase as different characters.
+    Note: We are using extended ascii as our alphabet (see EXTENDED_ASCII_SIZE) 
+    and our solution handles lowercase and uppercase as different characters.
 
     Time Complexity: O(n) where n is the length of the string
     Space Complexity: O(k) where k is the size of the alphabet
