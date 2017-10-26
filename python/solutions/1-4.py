@@ -1,13 +1,13 @@
 """
-Cracking the Coding Interview
+Cracking the Coding Interview Question 1.4 Palindrome Permutation
 
-Chapter 1 Arrays and Strings
-
-Question 1.4 Palindrome Permutation: Given a string, write a function to check
+Given a string, write a function to check
 if it is a permutation of a palindrome. A palindrome is a word or phrase that is
 the same forwards as backwards. A permutation is a rearrangement of letters. The
 palindrome does not need to be limited to just dictionary words.
 """
+
+__author__ = 'Jose Rojas'
 
 import unittest
 
