@@ -1,11 +1,13 @@
 """
 Cracking the Coding Interview Question 2.5 Sum Lists
 
-You have two numbers represented by a linked list, where each
-node contains a single digit. The digits are stored in reverse order, such that
-the 1's digit is at the head of the list. Write a function that adds the two
-numbers and returns the sum as a linked list.
+You have two numbers represented by a linked list, where each node contains a
+single digit. The digits are stored in reverse order, such that the 1's digit is
+at the head of the list. Write a function that adds the two numbers and returns
+the sum as a linked list.
 """
+
+__author__ = 'Jose Rojas'
 
 import unittest
 
@@ -17,21 +19,21 @@ class node:
     TODO: Move node class to its own file and call it list_node for code reuse.
           Move print methode along with it
 
-    A List structure will be represented using zero or more nodes. 
+    A List structure will be represented using zero or more nodes.
 
     A node is a structure with two members, data and next, which will be used
     to represent the 'data' stored in a node and the 'next' node in the list.
 
     We can iterate a list by starting at the head node, stepping through its
-    next node and repeating this until the tail node is reached. The head 
+    next node and repeating this until the tail node is reached. The head
     (or first) node of the list is the node that is not preceeded by any nodes.
     The tail (or last) node of a list will be the node that does not have a
-    next node. 
+    next node.
 
     Note: The head node should always be tracked, and more often than not be
     used to pass around the list, so no information is lost.
     """
-    
+
     def __init__(self, data=None):
         self.data = data
         self.next = None
@@ -52,8 +54,8 @@ class node:
 def sum_lists(headA, headB):
     """
     Function to calculate summation of two lists
-    Returns a single node which represents the head of the list 
-    """ 
+    Returns a single node which represents the head of the list
+    """
 
     headSum = node()
     itr = headSum
@@ -61,7 +63,7 @@ def sum_lists(headA, headB):
 
     while (headA is not None and headB is not None) or remainder > 0:
         summation = remainder
-        
+
         if headA is not None:
             summation += headA.get_data()
 
@@ -76,10 +78,10 @@ def sum_lists(headA, headB):
             new_node = node(summation % 10)
             itr.set_next(new_node)
             itr = itr.get_next()
-        
+
         if headA is not None:
             headA = headA.get_next()
-        
+
         if headB is not None:
             headB = headB.get_next()
 
@@ -106,7 +108,7 @@ def sum_lists(headA, headB):
 def print_list(head):
     """
     TODO: Move this and node class to a separate file for code reuse
-    
+
     Function that is used to print out a list (node list) from head to tail
     """
 
@@ -124,7 +126,7 @@ def num_to_list(num):
 
     itr = node()
 
-    for n in str(num):        
+    for n in str(num):
         if itr.get_data() == None:
             itr.set_data(int(n))
         else:
@@ -143,7 +145,7 @@ def list_to_num(head):
     while head is not None:
         num .insert(0,(str(head.get_data())))
         head = head.get_next()
-    
+
     return int(''.join(num))
 
 class Test(unittest.TestCase):
@@ -156,12 +158,12 @@ class Test(unittest.TestCase):
         expected = self.numA + self.numB
         sumL = sum_lists(self.headA, self.headB)
         actual = list_to_num(sumL)
-        
+
         """
         # For Debugging purposes
 
-        print_list(self.headA) 
-        print_list(self.headB) 
+        print_list(self.headA)
+        print_list(self.headB)
         print_list(sumL)
         """
 
