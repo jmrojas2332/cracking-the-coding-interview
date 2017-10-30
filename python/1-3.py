@@ -17,7 +17,7 @@ def urlify(string, length):
     Function to urlify a string.
 
     Function iterates through 'string' starting at the end, shifting each
-    character (in order) towards the end of the list and replacing spaces.
+    character towards the end of the list and replacing spaces with '%20'.
 
     Time Complexity: O(n) where n is the size of the list
     Space Complexity: O(1)
