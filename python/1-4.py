@@ -11,36 +11,35 @@ __author__ = 'Jose Rojas'
 
 import unittest
 
-EXTENDED_ASCII_SIZE = 256
-
 def palindrome_permutation(string):
     """
-    Function to check if a string is a palindrome permution
+    Function to check if a string is a palindrome permutation
 
-    Function checks how many times each character appears in the string.
-    Returns True if at most 1 character has an odd count.
+    Function counts how many characters appear an odd amount of times in the
+    string. In order to be a permutation of a palindrome there can be at most 1
+    character that appears an odd amount of times.
 
-    Note: We are using extended ascii as our alphabet (see EXTENDED_ASCII_SIZE)
-    and our solution handles lowercase and uppercase as different characters.
+    Returns True if at most 1 character has an odd count. Else Returns False
 
-    Time Complexity: O(n) where n is the length of the string
-    Space Complexity: O(k) where k is the size of the alphabet
+    Time Complexity: O(n) where n is the length of 'string'
+    Space Complexity: O(k) where k is the number of unique characters in 'string'
     """
 
-    char_count = [0 for _ in range(0, EXTENDED_ASCII_SIZE)]
+    char_dict = dict()
     odd_count = 0
 
     for c in string:
-        val = ord(c)
-        if val >= EXTENDED_ASCII_SIZE:
-            raise IndexError('Character {} is not in our alphabet'.format(c))
-        else:
-            char_count[val] += 1
+        val = c
 
-            if char_count[val] % 2 == 1:
-                odd_count += 1
-            else:
-                odd_count -= 1
+        if val in char_dict:
+            char_dict[val] += 1
+        else:
+             char_dict[val] = 1
+
+        if char_dict[val] % 2 == 1:    # if odd
+            odd_count += 1
+        else:
+            odd_count -= 1
 
     return odd_count <= 1
 
