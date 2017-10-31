@@ -39,9 +39,9 @@ class Test(unittest.TestCase):
         (list('Mr Jose Rojas    '), 13, list('Mr%20Jose%20Rojas'))]
 
     def test_urlify(self):
-        for [test_string, length, expected] in self.data:
-            urlify(test_string, length)
-            self.assertEqual(test_string, expected)
+        for [actual, length, expected] in self.data:
+            urlify(actual, length)
+            self.assertEqual(actual, expected)
 
 
 if __name__ == '__main__':
