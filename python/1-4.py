@@ -22,21 +22,18 @@ def palindrome_permutation(string):
     Returns True if at most 1 character has an odd count. Else Returns False
 
     Time Complexity: O(n) where n is the length of 'string'
-    Space Complexity: O(k) where k is the number of unique characters in 'string'
+    Space Complexity: O(k) where k is the size of the char set (ASCII or Unicode)
     """
 
-    char_dict = dict()
     odd_count = 0
-
+    char_dict = dict()
     for c in string:
-        val = c
-
-        if val in char_dict:
-            char_dict[val] += 1
+        if c in char_dict:
+            char_dict[c] += 1
         else:
-             char_dict[val] = 1
+             char_dict[c] = 1
 
-        if char_dict[val] % 2 == 1:    # if odd
+        if char_dict[c] % 2 == 1:    # if odd
             odd_count += 1
         else:
             odd_count -= 1

@@ -29,8 +29,9 @@ def string_rotation(s1, s2):
     Space Complexity: O(1)
     """
 
-    if len(s1) != len(s2):  # must be equal in length to be rotation
+    if len(s1) != len(s2):      # must be equal in length to be rotation
         return False
+
     return is_substring(s1 + s1, s2)
 
 class Test(unittest.TestCase):

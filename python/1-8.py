@@ -13,6 +13,14 @@ def zero_matrix(matrix):
     """
     Function for filling the matrices rows/columns that contain a zero.
 
+    Function uses first row and col of matrix to track which rows and cols will
+    have zeros.
+
+    Function first checks if 1st row/col of matrix will contain zeros, then
+    traverses remaining matrix, tracking which rows/cols will contain zeros.
+    Function concludes by traversing matrix again, nullifying matrix using 1st
+    row/col.
+
     Time Complexity: O(m x n) where m x n are the dimensions of the matrix
     Space Complexity: O(1)
     """
@@ -22,6 +30,7 @@ def zero_matrix(matrix):
     zerorow = False
     zerocol = False
 
+    # initial check of matrix containing zeros in 1st row or col
     for c in range(cols):
         if not matrix[0][c]:
             zerorow = True
@@ -30,16 +39,21 @@ def zero_matrix(matrix):
         if not matrix[r][0]:
             zerocol = True
             break
+
+    # traverse matrix, excluding 1st row/col, tracking rows/cols that contain zeros
     for r in range(1, rows):
         for c in range(1, cols):
             if not matrix[r][c]:
                 matrix[0][c] = 0
                 matrix[r][0] = 0
 
+    # nullify matrix values, excluding 1st row/col, using 1st row/col
     for r in range(1, rows):
         for c in range(1, cols):
             if not matrix[0][c] or not matrix[r][0]:
                 matrix[r][c] = 0
+
+    # nullify first row and col if initial check deemed zeros necessary
     if zerorow:
         for c in range(cols):
             matrix[0][c] = 0
