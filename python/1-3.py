@@ -22,6 +22,7 @@ def urlify(string, length):
     Time Complexity: O(n) where n is the size of the list
     Space Complexity: O(1)
     """
+
     new_length = len(string)
 
     for idx in reversed(range(length)):
@@ -33,7 +34,6 @@ def urlify(string, length):
             new_length -= 1
 
 class Test(unittest.TestCase):
-
     data = [
         (list('Hello World  '), 11, list('Hello%20World')),
         (list('Mr Jose Rojas    '), 13, list('Mr%20Jose%20Rojas'))]
