@@ -11,17 +11,17 @@ __author__ = 'Jose Rojas'
 
 import unittest
 
+
 def palindrome_permutation(string):
     """
     Function to check if a string is a palindrome permutation
 
     Function counts how many characters appear an odd amount of times in the
     string. In order to be a permutation of a palindrome there can be at most 1
-    character that appears an odd amount of times.
+    character that appears an odd amount of times. Returns True if at most 1
+    character has an odd count. Else Returns False
 
-    Returns True if at most 1 character has an odd count. Else Returns False
-
-    Time Complexity: O(n) where n is the length of 'string'
+    Time Complexity: O(n) where n is the length of the string
     Space Complexity: O(k) where k is the size of the char set (ASCII or Unicode)
     """
 
@@ -52,7 +52,6 @@ class Test(unittest.TestCase):
         for test_string in self.data_expected_false:
             actual = palindrome_permutation(test_string)
             self.assertFalse(actual)
-
 
 if __name__ == '__main__':
     unittest.main()

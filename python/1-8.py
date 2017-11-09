@@ -9,6 +9,7 @@ __author__ = 'Jose Rojas'
 
 import unittest
 
+
 def zero_matrix(matrix):
     """
     Function for filling the matrices rows/columns that contain a zero.

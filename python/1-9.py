@@ -11,8 +11,9 @@ __author__ = 'Jose Rojas'
 
 import unittest
 
+
 def is_substring(string, sub):
-    return string.find(sub) != -1
+    return sub in string
 
 def string_rotation(s1, s2):
     """
