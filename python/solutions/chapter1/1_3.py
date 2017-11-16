@@ -16,19 +16,9 @@ import unittest
 
 
 def urlify(char_list, length):
-    """
-    Function to urlify a string (list of characters due to string immutability)
-
-    Function iterates through list starting at the end, shifting each
-    character towards the end of the list and replacing spaces with '%20'.
-
-    Time Complexity: O(n) where n is the size of the list
-    Space Complexity: O(1)
-    """
-
     idx_end = len(char_list)     # get the position at the end of the list
 
-    for idx in reversed(range(length)):     # from last char's pos to first
+    for idx in reversed(range(length)):     # from last char's position to first
         if char_list[idx] == ' ':
             char_list[idx_end - 3: idx_end] = '%20'
             idx_end -= 3
@@ -37,9 +27,9 @@ def urlify(char_list, length):
             idx_end -= 1
 
 class Test(unittest.TestCase):
-    data = [
+    data = (
         (list('Hello World  '), 11, list('Hello%20World')),
-        (list('Mr Jose Rojas    '), 13, list('Mr%20Jose%20Rojas'))]
+        (list('Mr Jose Rojas    '), 13, list('Mr%20Jose%20Rojas')))
 
     def test_urlify(self):
         for [actual, length, expected] in self.data:

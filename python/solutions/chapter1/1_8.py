@@ -11,21 +11,6 @@ import unittest
 
 
 def zero_matrix(matrix):
-    """
-    Function for filling the matrices rows/columns that contain a zero.
-
-    Function uses first row and col of matrix to track which rows and cols will
-    have zeros.
-
-    Function first checks if 1st row/col of matrix will contain zeros, then
-    traverses remaining matrix, tracking which rows/cols will contain zeros.
-    Function concludes by traversing matrix again, nullifying matrix using 1st
-    row/col.
-
-    Time Complexity: O(m x n) where m x n are the dimensions of the matrix
-    Space Complexity: O(1)
-    """
-
     rows = len(matrix)
     cols = len(matrix[0])
     zerorow = False

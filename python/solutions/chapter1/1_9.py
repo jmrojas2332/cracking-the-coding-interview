@@ -16,20 +16,6 @@ def is_substring(string, sub):
     return sub in string
 
 def string_rotation(s1, s2):
-    """
-    Function to check if a string is a rotation of another string
-
-    Function checks if 's2' is a substring of 's1' concatenated with itself.
-    If 's2' is a rotation of 's1' then 's2' can be divided into two sections
-    'x' and 'y' that are rearranged to give you 's1'. (e.g., s2 = xy, s1 = yx).
-    We can now illustrate that 'xy' (s2) is a substring of 'yxyx' (s1 + s1).
-
-    Returns True if 's2' is a substring of 's1' + 's1'. Else Returns False.
-
-    Time Complexity: O(N)
-    Space Complexity: O(1)
-    """
-
     if len(s1) != len(s2):      # must be equal in length to be rotation
         return False
 

@@ -12,11 +12,8 @@ __author__ = 'Jose Rojas'
 
 import unittest
 
+
 def compress_string(string):
-    '''
-    Function for compressing a string.
-    '''
-    
     compressed_length = get_compressed_length(string)
     if len(string) <= compressed_length:
         return string
@@ -38,14 +35,6 @@ def compress_string(string):
     return ''.join(compressed_string)
 
 def get_compressed_length(string):
-    '''
-    Function for getting the length of a string's compressed form.
-
-    Function iterates through the string, counting up each time the current char
-    is changed. A char will be represented in the compressed string using two
-    chars (i.e. 'a1') so the length will be this count multiplied by 2.
-    '''
-
     current_char = ''
     char_changes = 0
     for c in string:

@@ -9,36 +9,14 @@ need to be limited to just dictionary words.
 
 __author__ = 'Jose Rojas'
 
+from collections import Counter
 import unittest
 
 
 def palindrome_permutation(string):
-    """
-    Function to check if a string is a palindrome permutation
-
-    Function counts how many characters appear an odd amount of times in the
-    string. In order to be a permutation of a palindrome there can be at most 1
-    character that appears an odd amount of times. Returns True if at most 1
-    character has an odd count. Else Returns False
-
-    Time Complexity: O(n) where n is the length of the string
-    Space Complexity: O(k) where k is the size of the char set (ASCII or Unicode)
-    """
-
-    odd_count = 0
-    char_dict = dict()
-    for c in string:
-        if c in char_dict:
-            char_dict[c] += 1
-        else:
-             char_dict[c] = 1
-
-        if char_dict[c] % 2 == 1:    # if odd
-            odd_count += 1
-        else:
-            odd_count -= 1
-
-    return odd_count <= 1
+    char_counter = Counter(string)
+    odd_count = [1 for count in char_counter.values() if count % 2 == 1]
+    return len(odd_count) <= 1
 
 class Test(unittest.TestCase):
     data_expected_true = ('aabb', 'aabbc', '01010101', ' ', 'a', 'hello hello')
