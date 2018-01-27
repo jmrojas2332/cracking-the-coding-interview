@@ -11,23 +11,23 @@ import unittest
 
 
 def check_permutation(s1, s2):
-    if len(s1) != len(s2):      # must have equal length to be a permutation
+    if len(s1) != len(s2):  # must have equal length to be a permutation
         return False
 
-    char_counter = Counter(s1)
+    char_counter = Counter(s1)  # dict where keys are chars and values are char counts of s1
 
     for c in s2:
         if c in char_counter:
             char_counter[c] -= 1
-            if char_counter[c] < 0:   # more of character 'c' in s2 than in s1
+            if char_counter[c] < 0:  # more of character 'c' in s2 than in s1
                 return False
         else:
-            return False        # if not already in dict than it was not in s1
+            return False  # if not already in dict then it was not in s1
 
     return True
 
 def check_permutation_with_sort(s1, s2):
-    if len(s1) != len(s2):      # must have equal length to be a permutation
+    if len(s1) != len(s2):  # must have equal length to be a permutation
         return False
 
     return sorted(s1) == sorted(s2)

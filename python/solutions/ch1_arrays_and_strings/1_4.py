@@ -14,7 +14,7 @@ import unittest
 
 
 def palindrome_permutation(string):
-    char_counter = Counter(string)
+    char_counter = Counter(string)  # dict where keys are chars and values are char counts of s1
     odd_count = [1 for count in char_counter.values() if count % 2 == 1]
     return len(odd_count) <= 1
 

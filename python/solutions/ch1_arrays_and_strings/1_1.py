@@ -11,7 +11,7 @@ import unittest
 
 
 def is_unique(string):
-    return len(string) == len(set(string))      # set doesn't allow duplicates
+    return len(string) == len(set(string))  # set doesn't allow duplicates
 
 def is_unique_no_storage(string):
     length = len(string)

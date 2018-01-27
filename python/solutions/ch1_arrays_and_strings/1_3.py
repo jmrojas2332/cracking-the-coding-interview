@@ -16,9 +16,9 @@ import unittest
 
 
 def urlify(char_list, length):
-    idx_end = len(char_list)     # get the position at the end of the list
+    idx_end = len(char_list)  # get the position at the end of the list
 
-    for idx in reversed(range(length)):     # from last char's position to first
+    for idx in reversed(range(length)):  # from last char's position to first
         if char_list[idx] == ' ':
             char_list[idx_end - 3: idx_end] = '%20'
             idx_end -= 3

@@ -16,9 +16,12 @@ def is_substring(string, sub):
     return sub in string
 
 def string_rotation(s1, s2):
-    if len(s1) != len(s2):      # must be equal in length to be rotation
+    if len(s1) != len(s2):  # must be equal in length to be rotation
         return False
 
+    # a string is a rotation if it is a substring of a string appended to itself
+    # e.g. 'waterbottle' is a substring of 'erbottlewat' + 'erbottlewat' making it
+    # a rotation of 'erbottlewat'
     return is_substring(s1 + s1, s2)
 
 class Test(unittest.TestCase):

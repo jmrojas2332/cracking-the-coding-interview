@@ -30,7 +30,7 @@ def compress_string(string):
             current_char = c
             current_count = 1
 
-    compressed_string.append(f'{current_char}{current_count}')      # print last char
+    compressed_string.append(f'{current_char}{current_count}')  # print last char
 
     return ''.join(compressed_string)
 
