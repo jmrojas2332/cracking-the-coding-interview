@@ -4,13 +4,11 @@ Cracking the Coding Interview Question 1.2 Check Permutation
 Given two strings, write a method to decide if one is a permutation of the other.
 """
 
-__author__ = 'Jose Rojas'
-
 from collections import Counter
 import unittest
 
 
-def check_permutation(s1, s2):
+def is_permutation(s1, s2):
     if len(s1) != len(s2):  # must have equal length to be a permutation
         return False
 
@@ -26,7 +24,7 @@ def check_permutation(s1, s2):
 
     return True
 
-def check_permutation_with_sort(s1, s2):
+def is_permutation_with_sort(s1, s2):
     if len(s1) != len(s2):  # must have equal length to be a permutation
         return False
 
@@ -36,13 +34,13 @@ class Test(unittest.TestCase):
     data_expected_true = (('no','on'), ('came', 'mace'))
     data_expected_false = (('jose', 'rojas'), ('hello', 'world'))
 
-    def test_check_permutation(self):
+    def test_is_permutation(self):
         for test_pair in self.data_expected_true:
-            actual = check_permutation(test_pair[0], test_pair[1])
+            actual = is_permutation(test_pair[0], test_pair[1])
             self.assertTrue(actual)
 
         for test_pair in self.data_expected_false:
-            actual = check_permutation(test_pair[0], test_pair[1])
+            actual = is_permutation(test_pair[0], test_pair[1])
             self.assertFalse(actual)
 
 if __name__ == '__main__':

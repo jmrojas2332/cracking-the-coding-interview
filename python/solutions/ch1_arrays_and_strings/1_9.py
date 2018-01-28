@@ -7,15 +7,13 @@ of s1 using only one call to isSubstring (e.g., 'waterbottle' is a rotation of
 'erbottlewat').
 """
 
-__author__ = 'Jose Rojas'
-
 import unittest
 
 
 def is_substring(string, sub):
     return sub in string
 
-def string_rotation(s1, s2):
+def is_rotation(s1, s2):
     if len(s1) != len(s2):  # must be equal in length to be rotation
         return False
 
@@ -33,13 +31,13 @@ class Test(unittest.TestCase):
         ('hello', 'helol'),
         ('water', 'bottle'))
 
-    def test_string_rotation(self):
+    def test_is_rotation(self):
         for test_pair in self.data_expected_true:
-            actual = string_rotation(test_pair[0], test_pair[1])
+            actual = is_rotation(test_pair[0], test_pair[1])
             self.assertTrue(actual)
 
         for test_pair in self.data_expected_false:
-            actual = string_rotation(test_pair[0], test_pair[1])
+            actual = is_rotation(test_pair[0], test_pair[1])
             self.assertFalse(actual)
 
 if __name__ == '__main__':

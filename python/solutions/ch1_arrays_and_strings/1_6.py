@@ -1,14 +1,12 @@
 """
-Cracking the Coding Interview Question 1. String Compression
+Cracking the Coding Interview Question 1.6 String Compression
 
 Implement a method to perform basic string compression using the counts of
 repeated characters. For example, string aabcccccaaa would become a2b1c5a3. If
 the "compressed" string would not become smaller than the original string, your
 method should return the original string. You can assume the string has only
-upercase and lowercase letter (a-z).
+uppercase and lowercase letter (a-z).
 """
-
-__author__ = 'Jose Rojas'
 
 import unittest
 

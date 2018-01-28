@@ -10,8 +10,6 @@ perfrom this operation in place.)
 Note: using python's built-in list type because it is essentially an array
 """
 
-__author__ = 'Jose Rojas'
-
 import unittest
 
 
