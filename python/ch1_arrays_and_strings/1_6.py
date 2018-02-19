@@ -12,35 +12,18 @@ import unittest
 
 
 def compress_string(string):
-    compressed_length = get_compressed_length(string)
-    if len(string) <= compressed_length:
-        return string
-
     compressed_string = []
-    current_char = ''
     current_count = 0
-    for c in string:
-        if c == current_char:
-            current_count += 1
-        else:
-            if current_char != '':
-                compressed_string.append(f'{current_char}{current_count}')
-            current_char = c
-            current_count = 1
 
-    compressed_string.append(f'{current_char}{current_count}')  # print last char
+    for i in range(len(string)):
+        if i != 0 and string[i] != string[i-1]:
+            compressed_string.append(string[i - 1] + str(current_count))
+            current_count = 0
+        current_count += 1
 
-    return ''.join(compressed_string)
+    compressed_string.append(string[i - 1] + str(current_count)) # add last char
 
-def get_compressed_length(string):
-    current_char = ''
-    char_changes = 0
-    for c in string:
-        if c != current_char:
-            char_changes += 1
-            current_char = c
-
-    return char_changes * 2
+    return min(string, ''.join(compressed_string), key=len)
 
 class Test(unittest.TestCase):
     data = (('aabcccccaaa', 'a2b1c5a3'), ('abc', 'abc'), ('aabbccc', 'a2b2c3'))
