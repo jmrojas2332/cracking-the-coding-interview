@@ -14,6 +14,7 @@ class HashMap:
             if pair.key == key:
                 pair.val = val
                 return
+
         self.table[hash(key) % self.capacity].append(KeyValuePair(key, val))
         self.keys.append(key)
 
@@ -65,8 +66,7 @@ class HashSet:
     def __contains__(self, key):
         if key in self.table[hash(key) % self.capacity]:
             return True
-        else:
-            return False
+        return False
 
     def __repr__(self):
         return '{' + ', '.join([str(key) for ls in self.table for key in ls]) + '}'
