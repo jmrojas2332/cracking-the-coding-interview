@@ -5,77 +5,68 @@ class KeyValuePair:
 
 class HashMap:
     def __init__(self, capacity=53):
-        self.table = []
         self.capacity = capacity
-        for i in range(capacity):
-            self.table.append([])
+        self.table = [[]] * capacity
+        self.keys = []
 
-    def __repr__(self):
-        return self.__str__()
+    def put(self, key, val):
+        for pair in self.table[hash(key) % self.capacity]:
+            if pair.key == key:
+                pair.val = val
+                return
+        self.table[hash(key) % self.capacity].append(KeyValuePair(key, val))
+        self.keys.append(key)
 
-    def __str__(self):
-        sb = []
-        for ls in self.table:
-            for kv in ls:
-                sb.append(str(kv.key) + ': ' + str(kv.val))
-        return '{' + ', '.join(sb) + '}'
+    def __setitem__(self, key, val):
+        self.put(key, val)
+
+    def remove(self, key):
+        arr = self.table[hash(key) % self.capacity]
+        for idx in range(len(arr)):
+            if arr[idx].key == key:
+                del arr[idx]
+                self.keys.remove(key)
+        raise IndexError('Key does not exist.')
+
+    def __delitem__(self, key):
+        self.remove(key)
 
     def __contains__(self, key):
         for pair in self.table[hash(key) % self.capacity]:
-            if key == pair.key:
-                return True # todo: handle error
+            if pair.key == key:
+                return True
         return False
 
     def __getitem__(self, key):
         for pair in self.table[hash(key) % self.capacity]:
-            if key == pair.key:
+            if pair.key == key:
                 return pair.val
+        raise IndexError('Key does not exist.')
 
-    def __setitem__(self, key, val):
-        pair = KeyValuePair(key, val)
-        ls = self.table[hash(key) % self.capacity]  # get current list
-
-        for idx in range(len(ls)):
-            if key == ls[idx].key:  # if exists, then update
-                ls[idx].val = val
-                return
-        ls.append(pair)  # append if not exists
-
-    def __delitem__(self, key):
-        ls = self.table[hash(key) % self.capacity]  # get current list
-        for idx in range(len(ls)):
-            if key == ls[idx].key:  # if exists, then delete
-                del ls[idx]
+    def __repr__(self):
+        return '{' + ', '.join([str(key) + ': ' + str(self[key]) for key in self.keys]) + '}'
 
 class HashSet:
     def __init__(self, capacity=53):
-        self.table = []
         self.capacity = capacity
-        for i in range(capacity):
-            self.table.append([])
+        self.table = [[]] * capacity
 
-    def __repr__(self):
-        return self.__str__()
-        
-    def __str__(self):
-        sb = []
-        for ls in self.table:
-            for val in ls:
-                sb.append(str(val))
-        return '{' + ', '.join(sb) + '}'
+    def add(self, key):
+        if key not in self.table[hash(key) % self.capacity]:
+            self.table[hash(key) % self.capacity].append(key)
 
-    def __contains__(self, val):
-        if val in self.table[hash(val) % self.capacity]:
+    def remove(self, key):
+        ls = self.table[hash(key) % self.capacity]  # get current list
+        for idx in range(len(ls)):
+            if key == ls[idx]:
+                del ls[idx]
+        raise IndexError('Key does not exist.')
+
+    def __contains__(self, key):
+        if key in self.table[hash(key) % self.capacity]:
             return True
         else:
             return False
 
-    def add(self, val):
-        if val not in self.table[hash(val) % self.capacity]:
-            self.table[hash(val) % self.capacity].append(val)
-
-    def remove(self, val):
-        ls = self.table[hash(val) % self.capacity]  # get current list
-        for idx in range(len(ls)):
-            if val == ls[idx]:
-                del ls[idx]
+    def __repr__(self):
+        return '{' + ', '.join([str(key) for ls in self.table for key in ls]) + '}'

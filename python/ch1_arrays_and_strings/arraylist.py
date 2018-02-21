@@ -1,36 +1,38 @@
 class ArrayList:
     def __init__(self, capacity=23):
-        self.arr = [[None] * 23]
-        self.capacity = 23
+        self.capacity = capacity
         self.size = 0
+        self.arr = [None] * capacity
 
-    def __repr__(self):
-        return self.__str__()
-
-    def __str__(self):
-        sb = []
-        for idx in range(self.size):
-            sb.append(str(self.arr[idx]))
-        return '[' + ', '.join(sb) + ']'
-
-    def resize(self, factor):
-        newArr = [[None] * int(self.capacity * factor)]
-        for idx in range(self.size):
-            newArr[idx] = self.arr[idx]
-        self.arr = newArr
-        self.capacity = int(self.capacity * factor)
-
-    def push(self, obj):
+    def append(self, data):
         if self.size == self.capacity:
             self.resize(2)
-        self.arr.insert(self.size, obj)
+
+        self.arr[self.size] = data
         self.size += 1
 
     def pop(self):
-        val = self.arr[self.size - 1]
-        self.arr[self.size - 1]
+        data = self.arr[self.size - 1]
         self.size -= 1
 
         if self.size <= self.capacity / 4:
             self.resize(1/2)
-        return val
+
+        return data
+
+    def resize(self, factor):
+        new_arr = [None] * int(self.capacity * factor)
+
+        for idx in range(self.size):
+            new_arr[idx] = self.arr[idx]
+
+        self.arr = new_arr
+        self.capacity = int(self.capacity * factor)
+
+    def __getitem__(self, idx):
+        if idx < self.size:
+            return self.arr[idx]
+        raise IndexError('Index out of range.')
+
+    def __repr__(self):
+        return '[' + ', '.join(str(self.arr[idx]) for idx in range(self.size)) + ']'
