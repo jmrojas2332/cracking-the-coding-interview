@@ -7,16 +7,16 @@ and that you are given the 'true' length of the string. (Note: If implementing
 in language with immutable strings, please use a character array so that you can
 perfrom this operation in place.)
 
-Note: using python's built-in list type because it is essentially an array
+Note: using python's built-in list type because it is an arraylist
 """
 
 import unittest
 
 
 def urlify(char_list, length):
-    idx_end = len(char_list)  # get the position at the end of the list
+    idx_end = len(char_list)  # used to iterate from back of array to front
 
-    for idx in reversed(range(length)):  # from last char's position to first
+    for idx in reversed(range(length)):  # iterate through string starting at last char
         if char_list[idx] == ' ':
             char_list[idx_end - 3: idx_end] = '%20'
             idx_end -= 3

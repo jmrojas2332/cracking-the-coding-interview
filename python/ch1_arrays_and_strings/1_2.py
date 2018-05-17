@@ -17,10 +17,10 @@ def is_permutation(s1, s2):
     for c in s2:
         if c in char_counter:
             char_counter[c] -= 1
-            if char_counter[c] < 0:  # more of character 'c' in s2 than in s1
+            if char_counter[c] < 0:  # more of character c in s2 than in s1
                 return False
-        else:
-            return False  # if not already in dict then it was not in s1
+        else:  # if not already in dict then it was not in s1
+            return False
 
     return True
 
@@ -28,7 +28,7 @@ def is_permutation_with_sort(s1, s2):
     if len(s1) != len(s2):  # must have equal length to be a permutation
         return False
 
-    return sorted(s1) == sorted(s2)
+    return sorted(s1) == sorted(s2)  # sorted strings with same value are permutations 
 
 class Test(unittest.TestCase):
     data_expected_true = (('no','on'), ('came', 'mace'))

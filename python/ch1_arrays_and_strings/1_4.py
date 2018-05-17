@@ -15,7 +15,7 @@ def is_palindrome_permutation(string):
     char_counter = Counter(string)  # dict where keys are chars and values are char counts of s1
     odd_count = len([1 for count in char_counter.values() if count % 2 == 1])
 
-    return odd_count <= 1
+    return odd_count <= 1  # a permutation of a palindrome can have at most 1 char with odd count
 
 class Test(unittest.TestCase):
     data_expected_true = ('aabb', 'aabbc', '01010101', ' ', 'a', 'hello hello')
