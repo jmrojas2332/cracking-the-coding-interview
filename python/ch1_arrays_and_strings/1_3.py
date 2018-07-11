@@ -14,9 +14,10 @@ import unittest
 
 
 def urlify(char_list, length):
-    idx_end = len(char_list)  # used to iterate from back of array to front
+    # iterating from back to front so no additional data structures needed
+    idx_end = len(char_list)
 
-    for idx in reversed(range(length)):  # iterate through string starting at last char
+    for idx in reversed(range(length)):
         if char_list[idx] == ' ':
             char_list[idx_end - 3: idx_end] = '%20'
             idx_end -= 3

@@ -12,27 +12,26 @@ be rotated to top right (see test case))
 import unittest
 
 def rotate_matrix(matrix):
-    # Perform rotation in layers (eg. outer layer, inner layer). Num of layers
-    # in a matrix is equal to length / 2. Since this is python we need to cast
-    # to integer since division of a matrix with odd length will give back a
-    # float. The cast will drop the decimal giving us what we want since we
-    # don't need to rotate middle (only one number in middlemost layer of a
-    # matrix with odd length).
 
     n = len(matrix)  # num of rows/cols in matrix
 
+    # Perform rotation in layers (eg. outer layer, inner layer). Num of layers
+    # in a matrix is equal to length / 2. We are dropping remainder so this can
+    # work with both even and odd lengthed matrices (dropping remainder will ignore
+    # middle layer of matrix which is fine because middle layer is 1 x 1 and
+    # will not need a rotation.)
     for layer in range(n // 2):
-        first = layer
-        last = n - layer - 1
+        first = layer  # tracks first row and column of this layer
+        last = n - layer - 1  # tracks last row and last column of this layer
 
         for i in range(first, last):
-            offset = i - first
+            offset = i - first  # used to iterate layer
+
             tmp = matrix[first][i]
             matrix[first][i] = matrix[last - offset][first]
             matrix[last - offset][first] = matrix[last][last - offset]
             matrix[last][last - offset] = matrix[i][last]
             matrix[i][last] = tmp
-        print(matrix)
 
 class Test(unittest.TestCase):
     test1 = {'actual' : [[0, 0, 0],

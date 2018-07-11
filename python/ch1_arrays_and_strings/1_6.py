@@ -13,15 +13,15 @@ import unittest
 
 def compress_string(string):
     compressed_string = []
-    current_count = 0
+    consecutive_char_count = 0
 
     for i in range(len(string)):
         if i != 0 and string[i] != string[i-1]:
-            compressed_string.append(string[i - 1] + str(current_count))
-            current_count = 0
-        current_count += 1
+            compressed_string.append(string[i - 1] + str(consecutive_char_count))
+            consecutive_char_count = 0
+        consecutive_char_count += 1
 
-    compressed_string.append(string[i - 1] + str(current_count)) # add last char
+    compressed_string.append(string[i - 1] + str(consecutive_char_count)) # add last char
 
     return min(string, ''.join(compressed_string), key=len)
 

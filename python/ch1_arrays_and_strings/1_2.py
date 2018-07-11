@@ -4,7 +4,7 @@ Cracking the Coding Interview Question 1.2 Check Permutation
 Given two strings, write a method to decide if one is a permutation of the other.
 """
 
-from collections import Counter
+from collections import Counter # dict; keys are chars and values are char counts
 import unittest
 
 
@@ -12,7 +12,7 @@ def is_permutation(s1, s2):
     if len(s1) != len(s2):  # must have equal length to be a permutation
         return False
 
-    char_counter = Counter(s1)  # dict where keys are chars and values are char counts of s1
+    char_counter = Counter(s1)
 
     for c in s2:
         if c in char_counter:
@@ -28,7 +28,7 @@ def is_permutation_with_sort(s1, s2):
     if len(s1) != len(s2):  # must have equal length to be a permutation
         return False
 
-    return sorted(s1) == sorted(s2)  # sorted strings with same value are permutations 
+    return sorted(s1) == sorted(s2)  # sorted strings with same value are permutations
 
 class Test(unittest.TestCase):
     data_expected_true = (('no','on'), ('came', 'mace'))

@@ -32,6 +32,7 @@ def is_one_away_replace(s1, s2, length):
 def is_one_away_insert(shorter, longer, shorter_length, longer_length):
     found_diff = False
     shorter_idx = 0
+
     for longer_idx in range(longer_length):
         if shorter_idx == shorter_length:  # end of short string reached
             break
@@ -44,7 +45,6 @@ def is_one_away_insert(shorter, longer, shorter_length, longer_length):
             shorter_idx += 1  # only increment smaller index when char is equal
 
     return True
-
 
 class Test(unittest.TestCase):
     data_expected_true = (('bell','jell'), ('bell', 'yell'), ('bell', 'belly'), ('belly', 'bell'))

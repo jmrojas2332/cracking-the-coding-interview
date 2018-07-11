@@ -9,10 +9,12 @@ import unittest
 
 
 def is_unique(string):
-    return len(string) == len(set(string))  # set doesn't allow duplicate chars
+    # set removes duplicates so just compare set to set(string)
+    return len(string) == len(set(string))
 
 def is_unique_no_data_structure(string):  # trades speed for space
     length = len(string)
+    
     for i in range(length - 1):
         for j in range(i + 1, length):
             if string[i] == string[j]:  # cannot be unique if two chars are equal
