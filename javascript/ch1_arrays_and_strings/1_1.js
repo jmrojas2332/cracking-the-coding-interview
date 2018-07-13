@@ -13,13 +13,13 @@ describe('isUnique', function() {
 
   for (let str of dataExpectedTrue) {
     it(`${str} is unique`, function() {
-      assert.isTrue(isUnique(str));
+      assert.isTrue(isUniqueNoDataStructues(str));
     });
   }
 
   for (let str of dataExpectedFalse) {
     it(`${str} is not unique`, function() {
-      assert.isFalse(isUnique(str));
+      assert.isFalse(isUniqueNoDataStructues(str));
     });
   }
 });
@@ -32,6 +32,20 @@ function isUnique(str) {
       return false;
     }
     charSet.add(char);
+  }
+
+  return true;
+}
+
+function isUniqueNoDataStructues(str) { // trades speed for space
+  let length = str.length;
+  
+  for (let i = 0; i < length - 1; i++) {
+    for (let j = i + 1; j < length; j++) {
+      if (str[i] == str[j]) {
+        return false;
+      }
+    }
   }
 
   return true;
