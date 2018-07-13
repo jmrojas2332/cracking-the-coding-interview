@@ -1,0 +1,22 @@
+{
+  "name": "cracking-the-coding-interview",
+  "version": "1.0.0",
+  "description": "My javaScript solutions to solve ctci questions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jmrojas2332/cracking-the-coding-interview.git"
+  },
+  "author": "Jose Rojas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jmrojas2332/cracking-the-coding-interview/issues"
+  },
+  "homepage": "https://github.com/jmrojas2332/cracking-the-coding-interview#readme",
+  "devDependencies": {
+    "chai": "^4.1.2"
+  }
+}
