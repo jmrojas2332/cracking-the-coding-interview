@@ -8,15 +8,7 @@ if you cannot use additional data structures?
 var assert = require('chai').assert;
 
 function isUnique(str) {
-  let charSet = new Set();
-
-  for (let char of str) {
-    if (charSet.has(char)) {
-      return false;
-    }
-    charSet.add(char);
-  }
-  return true;
+  return new Set(str).size == str.length;
 }
 
 function isUniqueNoDataStructues(str) { // trades speed for space
@@ -24,7 +16,7 @@ function isUniqueNoDataStructues(str) { // trades speed for space
 
   for (let i = 0; i < length - 1; i++) {
     for (let j = i + 1; j < length; j++) {
-      if (str[i] == str[j]) {
+      if (str.charAt(i) == str.charAt(j)) {
         return false;
       }
     }
@@ -38,7 +30,7 @@ describe('isUnique', function() {
 
   for (let str of dataExpectedTrue) {
     it(`${str} is unique`, function() {
-      assert.isTrue(isUniqueNoDataStructues(str));
+      assert.isTrue(isUnique(str));
     });
   }
 
