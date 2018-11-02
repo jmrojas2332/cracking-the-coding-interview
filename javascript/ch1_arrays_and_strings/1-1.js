@@ -24,8 +24,8 @@ function isUniqueNoDataStructues(str) {  // trades speed for space
 }
 
 describe('isUnique', function() {
-    let dataExpectedTrue = ['a', 'aA', '', ' '];
-    let dataExpectedFalse = ['aa', 'aba', '  '];
+    const dataExpectedTrue = ['a', 'aA', '', ' '];
+    const dataExpectedFalse = ['aa', 'aba', '  '];
 
     for (let str of dataExpectedTrue) {
         it(`checks if '${str}' is unique`, function() {

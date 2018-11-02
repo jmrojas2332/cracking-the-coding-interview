@@ -14,7 +14,7 @@ def is_unique(string):
 
 def is_unique_no_data_structure(string):  # trades speed for space
     length = len(string)
-    
+
     for i in range(length - 1):
         for j in range(i + 1, length):
             if string[i] == string[j]:  # cannot be unique if two chars are equal
@@ -23,8 +23,8 @@ def is_unique_no_data_structure(string):  # trades speed for space
     return True
 
 class Test(unittest.TestCase):
-    data_expected_true = ('abcd', 'jose', 'rojas', 'world')
-    data_expected_false = ('hello', 'good', 'buddy')
+    data_expected_true = ('a', 'aA', '', ' ')
+    data_expected_false = ('aa', 'aba', '  ')
 
     def test_is_unique(self):
         for test_string in self.data_expected_true:
