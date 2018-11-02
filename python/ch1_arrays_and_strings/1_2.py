@@ -31,16 +31,16 @@ def is_permutation_with_sort(s1, s2):
     return sorted(s1) == sorted(s2)  # sorted strings with same value are permutations
 
 class Test(unittest.TestCase):
-    data_expected_true = (('no','on'), ('came', 'mace'))
-    data_expected_false = (('jose', 'rojas'), ('hello', 'world'))
+    data_expected_true = (('a','a'), ('ab', 'ba'), ('001', '100'), (' a', 'a '))
+    data_expected_false = (('a', 'A'), ('ab', 'ac'), ('', ' '))
 
     def test_is_permutation(self):
-        for test_pair in self.data_expected_true:
-            actual = is_permutation(test_pair[0], test_pair[1])
+        for str1, str2 in self.data_expected_true:
+            actual = is_permutation(str1, str2)
             self.assertTrue(actual)
 
-        for test_pair in self.data_expected_false:
-            actual = is_permutation(test_pair[0], test_pair[1])
+        for str1, str2 in self.data_expected_false:
+            actual = is_permutation(str1, str2)
             self.assertFalse(actual)
 
 if __name__ == '__main__':
