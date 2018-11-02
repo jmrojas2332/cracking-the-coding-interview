@@ -24,18 +24,18 @@ function isUniqueNoDataStructues(str) {  // trades speed for space
 }
 
 describe('isUnique', function() {
-    let dataExpectedTrue = ['abcd', 'jose', 'rojas', ' '];
-    let dataExpectedFalse = ['hello', 'good', 'buddy', '  '];
+    let dataExpectedTrue = ['a', 'aA', '', ' '];
+    let dataExpectedFalse = ['aa', 'aba', '  '];
 
     for (let str of dataExpectedTrue) {
-        it(`checks if ${str} is unique`, function() {
-            assert.isTrue(isUniqueNoDataStructues(str));
+        it(`checks if '${str}' is unique`, function() {
+            assert.isTrue(isUnique(str));
         });
     }
 
     for (let str of dataExpectedFalse) {
-        it(`checks if ${str} is not unique`, function() {
-            assert.isFalse(isUniqueNoDataStructues(str));
+        it(`checks if '${str}' is not unique`, function() {
+            assert.isFalse(isUnique(str));
         });
     }
 });
