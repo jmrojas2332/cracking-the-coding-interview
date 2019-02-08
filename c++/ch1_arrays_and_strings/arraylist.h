@@ -18,6 +18,10 @@ class ArrayList
 public:
     ArrayList(const std::size_t capacity = 23);
 
+    ArrayList(const ArrayList<T> &array);
+
+    ArrayList(ArrayList<T> &&array);
+
     ~ArrayList();
 
     friend std::ostream& operator<< <> (std::ostream &out, const ArrayList<T> &array);
@@ -27,6 +31,8 @@ public:
     const T& operator[](const std::size_t index) const;
 
     void append(const T &value);
+
+    T pop();
 
     void resize(std::size_t capacity);
 
@@ -60,6 +66,29 @@ ArrayList<T>::ArrayList(std::size_t capacity)
 }
 
 template <typename T>
+ArrayList<T>::ArrayList(const ArrayList<T> &array)
+{
+    this->array = std::make_unique<T[]>(array.getCapacity());
+    capacity = array.getCapacity();
+    size = 0;
+
+    for (const auto val : array)  // copy each val
+    {
+        this->array[size++] = val;
+    }
+}
+
+template <typename T>
+ArrayList<T>::ArrayList(ArrayList<T> &&array)
+{
+    capacity = array.getCapacity();
+    size = array.getSize();
+    this->array = std::move(array.array);
+    array.capacity = 0;
+    array.size = 0;
+}
+
+template <typename T>
 ArrayList<T>::~ArrayList() {}
 
 template <typename T>
@@ -82,7 +111,7 @@ std::ostream& operator<<(std::ostream &out, const ArrayList<T> &array)
 template <typename T>
 T& ArrayList<T>::operator[](const std::size_t index)
 {
-    assert(index >= 0 && index < capacity);
+    assert(index >= 0 && index < capacity);  // index out of range
 
     return array[index];
 }
@@ -90,7 +119,7 @@ T& ArrayList<T>::operator[](const std::size_t index)
 template <typename T>
 const T& ArrayList<T>::operator[](const std::size_t index) const
 {
-    assert(index >= 0 && index < capacity);
+    assert(index >= 0 && index < capacity);  // index out of range
 
     return array[index];
 }
@@ -102,6 +131,21 @@ void ArrayList<T>::append(const T &val)
         resize(size * 2 + 1);  // make new array more than double in size
 
     array[size++] = val;
+}
+
+template <typename T>
+T ArrayList<T>::pop()
+{
+    assert(size > 0);  // no elements to pop
+
+    --size;
+
+    T val = array[size];
+
+    if (size <= capacity / 4)  // resize if size is much smaller than capacity
+        resize(capacity / 2 + 1);
+
+    return val;
 }
 
 template <typename T>
