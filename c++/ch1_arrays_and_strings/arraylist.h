@@ -16,9 +16,7 @@ template <class T>
 class ArrayList
 {
 public:
-    ArrayList(const int size = 23);
-
-    ArrayList(const ArrayList<T> &array);
+    ArrayList(const std::size_t capacity = 23);
 
     ~ArrayList();
 
@@ -30,31 +28,35 @@ public:
 
     void append(const T &value);
 
-    inline std::size_t getCapacity() const { return capacity; }
+    void resize(std::size_t capacity);
 
-    inline std::size_t getLength() const { return length; }
+    std::size_t getCapacity() const { return capacity; }
 
+    std::size_t getSize() const { return size; }
+
+    typedef T* iterator;
+
+    typedef const T* const_iterator;
+
+    iterator begin() { return &array[0]; }
+
+    const_iterator begin() const { return &array[0]; }
+
+    iterator end() { return &array[size]; }
+
+    const_iterator end() const { return &array[size]; }
 
 private:
     std::unique_ptr<T[]> array;
     std::size_t capacity;
-    std::size_t length;
+    std::size_t size;
 };
 
 template <typename T>
-ArrayList<T>::ArrayList(int size)
-    : array(new T[size]), capacity(size), length(0) {}
-
-template <typename T>
-ArrayList<T>::ArrayList(const ArrayList<T> &array)
-    : capacity(array.getCapacity()), length(array.getLength())
+ArrayList<T>::ArrayList(std::size_t capacity)
+    : array(std::make_unique<T[]>(capacity)), size(0)
 {
-    this->array = std::make_unique<T[capacity]>;  // initialize smart ptr
-
-    for (int i = 0; i < length; ++i)
-    {
-        this->array[i] = array[i];
-    }
+    this->capacity = capacity;
 }
 
 template <typename T>
@@ -65,13 +67,13 @@ std::ostream& operator<<(std::ostream &out, const ArrayList<T> &array)
 {
     out << "ArrayList(";
 
-    for (unsigned int i = 0; i < array.getLength(); ++i)
+    for (const auto &val : array)
     {
-        out << array.array[i] << " ";
+        out << val << " ";
     }
 
-    if (array.getLength() > 0)
-        out << '\b';  // remove last space
+    if (array.getSize() > 0)
+        out << '\b';  // remove trailing space of last element
 
     out << ")";
     return out;
@@ -80,7 +82,7 @@ std::ostream& operator<<(std::ostream &out, const ArrayList<T> &array)
 template <typename T>
 T& ArrayList<T>::operator[](const std::size_t index)
 {
-    assert(index >= 0 && index < length);
+    assert(index >= 0 && index < capacity);
 
     return array[index];
 }
@@ -88,7 +90,7 @@ T& ArrayList<T>::operator[](const std::size_t index)
 template <typename T>
 const T& ArrayList<T>::operator[](const std::size_t index) const
 {
-    assert(index >= 0 && index < length);
+    assert(index >= 0 && index < capacity);
 
     return array[index];
 }
@@ -96,11 +98,25 @@ const T& ArrayList<T>::operator[](const std::size_t index) const
 template <typename T>
 void ArrayList<T>::append(const T &val)
 {
-    if (length == capacity)
-        //resize();
+    if (size == capacity)
+        resize(size * 2 + 1);  // make new array more than double in size
 
-    array[length] = val;
-    ++length;
+    array[size++] = val;
+}
+
+template <typename T>
+void ArrayList<T>::resize(std::size_t capacity)
+{
+    auto new_array(std::make_unique<T[]>(capacity));
+
+    for (unsigned int i = 0; i < capacity; ++i)
+    {
+        if (i < size)  // prevent index out of bounds on old array
+            new_array[i] = array[i];
+    }
+
+    this->capacity = capacity;
+    array = std::move(new_array);
 }
 
 #endif
