@@ -72,7 +72,7 @@ ArrayList<T>::ArrayList(const ArrayList<T> &array)
     capacity = array.getCapacity();
     size = 0;
 
-    for (const auto val : array)  // copy each val
+    for (const auto &val : array)  // copy each val
     {
         this->array[size++] = val;
     }
