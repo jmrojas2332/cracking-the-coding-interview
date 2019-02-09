@@ -63,5 +63,6 @@ typings/
 # autocomplete config
 .tern-project
 
-# executables
+# executables and object files
 *.exe
+*.o
