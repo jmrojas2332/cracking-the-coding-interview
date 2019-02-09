@@ -22,7 +22,11 @@ public:
 
     ArrayList(ArrayList<T> &&array);
 
-    ~ArrayList();
+    ArrayList<T>& operator=(const ArrayList<T> &array);
+
+    ArrayList<T>& operator=(ArrayList<T> &&array);
+
+    ~ArrayList() = default;
 
     friend std::ostream& operator<< <> (std::ostream &out, const ArrayList<T> &array);
 
@@ -39,6 +43,8 @@ public:
     std::size_t getCapacity() const { return capacity; }
 
     std::size_t getSize() const { return size; }
+
+    bool empty() const { return size == 0; }
 
     typedef T* iterator;
 
@@ -72,7 +78,7 @@ ArrayList<T>::ArrayList(const ArrayList<T> &array)
     capacity = array.getCapacity();
     size = 0;
 
-    for (const auto &val : array)  // copy each val
+    for (const auto& val : array)  // copy each val
     {
         this->array[size++] = val;
     }
@@ -89,22 +95,62 @@ ArrayList<T>::ArrayList(ArrayList<T> &&array)
 }
 
 template <typename T>
-ArrayList<T>::~ArrayList() {}
+ArrayList<T>& ArrayList<T>::operator=(const ArrayList<T> &array)
+{
+    if (this == &array)  // self-copy check
+    {
+        return *this;
+    }
+
+    if (capacity < array.getSize())  // resize if we can't fit array
+    {
+        resize(array.getSize() * 2 + 1);
+    }
+
+    size = 0;
+
+    for (const auto& val : array)
+    {
+        this->array[size++] = val;
+    }
+
+    return *this;
+}
+
+template <typename T>
+ArrayList<T>& ArrayList<T>::operator=(ArrayList<T> &&array)
+{
+    if (this == &array)  // self-copy check
+    {
+        return *this;
+    }
+
+    capacity = array.getCapacity();
+    size = array.getSize();
+    this->array = std::move(array.array);
+    array.capacity = 0;
+    array.size = 0;
+
+    return *this;
+}
 
 template <typename T>
 std::ostream& operator<<(std::ostream &out, const ArrayList<T> &array)
 {
     out << "ArrayList(";
 
-    for (const auto &val : array)
+    for (const auto& val : array)
     {
         out << val << " ";
     }
 
-    if (array.getSize() > 0)
+    if (!array.empty())
+    {
         out << '\b';  // remove trailing space of last element
+    }
 
     out << ")";
+
     return out;
 }
 
@@ -128,7 +174,9 @@ template <typename T>
 void ArrayList<T>::append(const T &val)
 {
     if (size == capacity)
+    {
         resize(size * 2 + 1);  // make new array more than double in size
+    }
 
     array[size++] = val;
 }
@@ -143,7 +191,9 @@ T ArrayList<T>::pop()
     T val = array[size];
 
     if (size <= capacity / 4)  // resize if size is much smaller than capacity
+    {
         resize(capacity / 2 + 1);
+    }
 
     return val;
 }
@@ -156,7 +206,9 @@ void ArrayList<T>::resize(std::size_t capacity)
     for (unsigned int i = 0; i < capacity; ++i)
     {
         if (i < size)  // prevent index out of bounds on old array
+        {
             new_array[i] = array[i];
+        }
     }
 
     this->capacity = capacity;

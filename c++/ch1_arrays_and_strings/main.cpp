@@ -8,20 +8,22 @@ int main()
     arr.append(2);
     arr.append(3);
     arr.append(4);
+    std::cout << "Array1: " << arr << "\n";
     std::cout << "Popping..." << arr.pop() << "\n";
-
-    std::cout << arr << "\n";
+    std::cout << "Array1: " << arr << "\n";
 
     ArrayList<int> arr2 = std::move(arr);
-    std::cout << arr2 << "\n";
+    std::cout << "Moved Array1 to Array2" << "\n";
+    std::cout << "Array1: " << arr << "\n";
+    std::cout << "Array2: " << arr2 << "\n";
 
-    arr2[1] = 1;
-    std::cout << arr2 << "\n";
-    std::cout << arr << "\n";
     std::cout << "Popping..." << arr2.pop() << "\n";
-    std::cout << "Popping..." << arr2.pop() << "\n";
-    std::cout << "Popping..." << arr2.pop() << "\n";
-    std::cout << arr2;
+    std::cout << "Array2: " << arr2 << "\n";
+
+    arr = std::move(arr2);
+    std::cout << "Move Assignment to Array1 from Array2" << "\n";
+    std::cout << "Array1: " << arr << "\n";
+    std::cout << "Array2: " << arr2 << "\n";
 
     return 0;
 }
