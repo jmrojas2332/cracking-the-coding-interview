@@ -32,10 +32,12 @@ bool isUniqueNoDataStructures(const std::string& str)
 
 int main()
 {
-    std::array<std::string, 5> arr {"Hello", "World", " ", "  ", "AaBb"};
-
+    std::array<std::string, 7> arr {"Hello", "World", " ", "  ", "AaBb", "", "-1"};
+    std::cout << "\n";
     for (const auto& val : arr)
     {
-        std::cout << val << " is unique: " << isUnique(val) << "\n";
+        std::string output = isUnique(val) == 1 ? "true" : "false";
+        std::cout << "'" << val << "'" << " is unique: " <<  output << "\n";
     }
+    std::cout << "\n";
 }
