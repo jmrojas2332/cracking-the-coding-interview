@@ -30,6 +30,12 @@ public:
 
     friend std::ostream& operator<< <> (std::ostream& out, const HashTable<K,V> &table);
 
+    bool isEmpty() const { return size == 0; }
+
+    bool contains(const K& key) const;
+
+    void insert(const K& key, const V& value);
+
     typedef std::forward_list<std::pair<K, V>>* iterator;
 
     typedef const std::forward_list<std::pair<K, V>>* const_iterator;
@@ -43,13 +49,15 @@ public:
     const_iterator end() const { return &table[size]; }
 
 private:
+    int hash(const K& key);
     std::unique_ptr<std::forward_list<std::pair<K, V>>[]> table;  // array of forward_lists containing pairs
-    int size;  // not complete size, just size of array (that contains linked lists)
+    int capacity;  // not complete size, just size of array (that contains linked lists)
+    int size;
 };
 
 template <typename K, typename V>
 HashTable<K, V>::HashTable(int size)
-    : table(std::make_unique<std::forward_list<std::pair<K, V>>[]>(size)), size(size)
+    : table(std::make_unique<std::forward_list<std::pair<K, V>>[]>(size)), capacity(size), size(0)
 {
 }
 
