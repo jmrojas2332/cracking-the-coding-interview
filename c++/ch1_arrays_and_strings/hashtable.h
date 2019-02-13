@@ -30,6 +30,10 @@ public:
 
     friend std::ostream& operator<< <> (std::ostream& out, const HashTable<K,V> &table);
 
+    std::size_t getSize() const { return size; }
+
+    std::size_t getCapacity() const { return capacity; }
+
     bool isEmpty() const { return size == 0; }
 
     bool contains(const K& key) const;
@@ -62,12 +66,51 @@ HashTable<K, V>::HashTable(std::size_t capacity)
 }
 
 template <typename K, typename V>
+HashTable<K, V>::HashTable(const HashTable<K, V> &table)
+{
+
+}
+
+template <typename K, typename V>
+HashTable<K, V>::HashTable(HashTable<K, V> &&table)
+{
+    capacity = table.getCapacity();
+    size = table.getSize();
+    this->table = std::move(table.table);
+    table.capacity = 0;
+    table.size = 0;
+}
+
+template <typename K, typename V>
+HashTable<K, V> HashTable<K, V>::operator=(const HashTable<K, V> &table)
+{
+
+}
+
+template <typename K, typename V>
+HashTable<K, V> HashTable<K, V>::operator=(HashTable<K, V> &&table)
+{
+    if (this == &table)  // self-copy check
+    {
+        return *this;
+    }
+
+    capacity = table.getCapacity();
+    size = table.getSize();
+    this->table = std::move(table.table);
+    table.capacity = 0;
+    table.size = 0;
+
+    return *this;
+}
+
+template <typename K, typename V>
 std::ostream& operator<<(std::ostream& out, const HashTable<K,V> &table)
 {
-    out << "HashTable:\n";
+    out << "HashTable:";
     for (const auto& list : table)
     {
-        out << "[";
+        out << "\n[";
 
         for (const auto& pair : list)
         {
@@ -79,7 +122,7 @@ std::ostream& operator<<(std::ostream& out, const HashTable<K,V> &table)
             out << "\b\b";
         }
 
-        out << "]\n";
+        out << "]";
     }
 
     return out;

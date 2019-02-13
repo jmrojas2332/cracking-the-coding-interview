@@ -12,7 +12,12 @@ int main()
     tab.insert("A", 1);
     tab.insert("B", -1);
     tab.insert("C", -3);
-    std::cout << tab;
+    std::cout << tab << "\n";
+
+    HashTable<std::string, int> tab2;
+    tab2 = std::move(tab);
+    std::cout << tab2 << "\n";
+    std::cout << tab << "\n";
 
     // ArrayList<int> arr(1);
     // arr.append(1);
