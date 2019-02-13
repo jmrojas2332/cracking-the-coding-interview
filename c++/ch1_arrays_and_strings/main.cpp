@@ -5,7 +5,15 @@
 int main()
 {
     HashTable<std::string, int> tab;
+    tab.insert("Hello", 1);
+    tab.insert("World", -1);
+    tab.insert("World", -1);
+    tab.insert("World", 2);
+    tab.insert("A", 1);
+    tab.insert("B", -1);
+    tab.insert("C", -3);
     std::cout << tab;
+
     // ArrayList<int> arr(1);
     // arr.append(1);
     // arr.append(2);
