@@ -7,15 +7,7 @@
 
 #include <iostream>
 
-struct Node
-{
-    Node *next;
-    int data;
-
-    Node(int d) : next(nullptr), data(d)
-    {
-    }
-};
+#include "node.h"
 
 Node * partitionList(Node *itr, int x)
 {
@@ -42,15 +34,6 @@ Node * partitionList(Node *itr, int x)
     tail->next = nullptr;
 
     return head;
-}
-
-void printList(Node *itr)
-{
-    while (itr != nullptr)
-    {
-        std::cout << itr->data << "->";
-        itr = itr->next;
-    }
 }
 
 int main()
