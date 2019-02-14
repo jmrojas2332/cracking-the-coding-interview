@@ -82,11 +82,11 @@ int main()
         itr = itr->next;
     }
 
-    printList(head1);
+    printNodeList(head1);
     std::cout << "\n";
-    printList(head2);
+    printNodeList(head2);
     std::cout << "\n";
-    printList(head3);
+    printNodeList(head3);
     std::cout << "\n";
 
     std::cout << "L1 intersects with L2: " << nodesIntersect(head1, head2) << "\n";

@@ -47,9 +47,9 @@ int main()
         itr = itr->next;
     }
 
-    printList(head);
+    printNodeList(head);
     std::cout <<"\n";
     head = partitionList(head, 5);
-    printList(head);
+    printNodeList(head);
     std::cout <<"\n";
 }

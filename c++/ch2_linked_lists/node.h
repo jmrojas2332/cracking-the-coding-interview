@@ -8,7 +8,7 @@ struct Node
     }
 };
 
-void printList(Node *itr)
+void printNodeList(Node *itr)
 {
     while (itr != nullptr)
     {
