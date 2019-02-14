@@ -6,7 +6,6 @@
 // less than x.
 
 #include <iostream>
-#include <memory>
 
 struct Node
 {
@@ -45,6 +44,15 @@ Node * partitionList(Node *itr, int x)
     return head;
 }
 
+void printList(Node *itr)
+{
+    while (itr != nullptr)
+    {
+        std::cout << itr->data << "->";
+        itr = itr->next;
+    }
+}
+
 int main()
 {
     Node *head = new Node(0);
@@ -56,20 +64,9 @@ int main()
         itr = itr->next;
     }
 
-    itr = head;
-    while (itr != nullptr)
-    {
-        std::cout << itr->data << "->";
-        itr = itr->next;
-    }
+    printList(head);
     std::cout <<"\n";
-
     head = partitionList(head, 5);
-    itr = head;
-    while (itr != nullptr)
-    {
-        std::cout << itr->data << "->";
-        itr = itr->next;
-    }
+    printList(head);
     std::cout <<"\n";
 }
