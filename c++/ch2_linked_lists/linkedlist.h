@@ -42,10 +42,16 @@ private:
     struct Node
     {
         T data;
-        std::unique_ptr<Node> next;
+        std::shared_ptr<Node> next;
+
+        Node(int d) : data(d), next(nullptr)
+        {
+        }
     };
 
-    std::unique_ptr<Node> head;
+    void printList(std::ostream &out) const;
+
+    std::shared_ptr<Node> head;
 
     std::size_t size;
 };
@@ -56,9 +62,55 @@ LinkedList<T>::LinkedList() : head(nullptr), size(0)
 }
 
 template <typename T>
+std::ostream& operator<<(std::ostream &out, const LinkedList<T> &list)
+{
+    list.printList(out);
+
+    return out;
+}
+
+template <typename T>
 void LinkedList<T>::pushFront(const T &data)
 {
-    
+    if (size == 0)
+    {
+        head = std::make_shared<Node>(data);
+    }
+    else
+    {
+        std::shared_ptr<Node> newNode = std::make_shared<Node>(data);
+        newNode->next = head;
+        head = newNode;
+    }
+
+    ++size;
+}
+
+template <typename T>
+T LinkedList<T>::popFront()
+{
+    assert(size > 0);
+
+    --size;
+
+    T tmp = head->data;
+    Node *next = head->next.get();
+    head.reset(next);
+
+    return tmp;
+}
+
+template <typename T>
+void LinkedList<T>::printList(std::ostream &out) const
+{
+    out << "List(";
+    std::shared_ptr<Node> itr = head;
+    while (itr != nullptr)
+    {
+        out << itr->data << "->";
+        itr = itr->next;
+    }
+    out << "null)";
 }
 
 #endif
