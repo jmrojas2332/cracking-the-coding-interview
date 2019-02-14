@@ -52,4 +52,6 @@ int main()
     head = partitionList(head, 5);
     printNodeList(head);
     std::cout <<"\n";
+
+    return 0;
 }

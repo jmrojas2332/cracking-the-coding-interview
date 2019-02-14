@@ -40,4 +40,6 @@ int main()
         std::cout << "'" << val << "'" << " is unique: " <<  output << "\n";
     }
     std::cout << "\n";
+
+    return 0;
 }

@@ -95,4 +95,6 @@ int main()
     std::cout << getMatrixAsString<5>(matrix5) << "\n";
     rotateMatrix<5>(matrix5);
     std::cout << getMatrixAsString<5>(matrix5) << "\n";
+
+    return 0;
 }

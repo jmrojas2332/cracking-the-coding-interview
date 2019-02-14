@@ -91,4 +91,6 @@ int main()
 
     std::cout << "L1 intersects with L2: " << nodesIntersect(head1, head2) << "\n";
     std::cout << "L1 intersects with L3: " << nodesIntersect(head1, head3) << "\n";
+
+    return 0;
 }
