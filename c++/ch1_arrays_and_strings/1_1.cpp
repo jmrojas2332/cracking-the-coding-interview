@@ -19,6 +19,8 @@
 //
 // Space Complexity: O(n) where n is length of the string.
 // At most n characters will be stored in unordered set.
+// Note: If given a character set (i.e., ASCII, Unicode) the spacce complexity
+// could be O(min(c, m)) where c is the size of the alphabet
 bool isUnique(const std::string &str)
 {
     std::unordered_set<char> lookupTable;

@@ -8,9 +8,9 @@
 #include <tuple>
 #include <vector>
 
-// Time Complexity: 
-//
-// Space Complexity: 
+// Time Complexity: O(n) where n is the length of the string
+// Can do this operation in place by starting at the end of the string
+// Space Complexity: O(1)
 void urlify(std::string &str, unsigned int length)
 {
     unsigned int indexItr = str.length();

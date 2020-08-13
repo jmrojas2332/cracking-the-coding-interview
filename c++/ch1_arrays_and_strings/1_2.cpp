@@ -16,6 +16,8 @@
 // Space Complexity: O(m) where m is the length of str1.
 // The lookup table never has more than m key-value pairs, as any char of str2
 // not in lookup table would tell us these are not permutations.
+// Note: If given a character set (i.e., ASCII, Unicode) the spacce complexity
+// could be O(min(c, m)) where c is the size of the alphabet
 bool checkPermutation(const std::string &str1, const std::string &str2)
 {
     // A permutation is a variation of how something is ordered. 
@@ -55,8 +57,7 @@ bool checkPermutation(const std::string &str1, const std::string &str2)
         {
             // char c was not in str1 so strings cannot be permutations
             return false;
-        }
-        
+        }        
     }
 
     return true;
