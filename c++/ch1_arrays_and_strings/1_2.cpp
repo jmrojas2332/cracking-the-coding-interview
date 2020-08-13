@@ -34,7 +34,7 @@ bool checkPermutation(const std::string &str1, const std::string &str2)
     std::unordered_map<char, int> characterCount;
     for (const char &c : str1)
     {
-        if (characterCount.count(c) == 0)
+        if (characterCount.find(c) == characterCount.end())
         {
             characterCount.insert(std::make_pair(c, 1));
         }
@@ -96,7 +96,7 @@ int main()
         }
         else
         {
-            std::cout << "Incorrect result of not permutation for: " + perm.first + " and " + perm.second << std::endl;
+            std::cout << "Incorrect result of permutation for: " + perm.first + " and " + perm.second << std::endl;
         }
     }
 }
