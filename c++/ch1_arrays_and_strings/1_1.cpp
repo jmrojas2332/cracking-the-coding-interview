@@ -19,7 +19,7 @@
 //
 // Space Complexity: O(n) where n is length of the string.
 // At most n characters will be stored in unordered set.
-bool isUnique (const std::string &str)
+bool isUnique(const std::string &str)
 {
     std::unordered_set<char> lookupTable;
     for (const char &c : str)
@@ -43,7 +43,7 @@ bool isUnique (const std::string &str)
 // Each character needs to be compared to every other character.
 // 
 // Space Complexity O(1)
-bool isUniqueFollowUp (const std::string &str)
+bool isUniqueFollowUp(const std::string &str)
 {
     for (unsigned int i = 0; i < str.length() - 1; ++i)
     {

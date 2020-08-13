@@ -16,7 +16,7 @@
 // Space Complexity: O(m) where m is the length of str1.
 // The lookup table never has more than m key-value pairs, as any char of str2
 // not in lookup table would tell us these are not permutations.
-bool checkPermutation (const std::string &str1, const std::string &str2)
+bool checkPermutation(const std::string &str1, const std::string &str2)
 {
     // A permutation is a variation of how something is ordered. 
     // In the case of strings, a string is a permutation of another is a string
