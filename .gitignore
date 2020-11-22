@@ -66,3 +66,4 @@ typings/
 # executables and object files
 *.exe
 *.o
+*.out
